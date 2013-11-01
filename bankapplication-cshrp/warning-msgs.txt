@@ -1,0 +1,60 @@
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 50
+Comment: //C++ TO C# CONVERTER NOTE: Overloaded method(s) are created above to convert the following method having default parameters:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 110
+Comment: //C++ TO C# CONVERTER NOTE: This 'CopyFrom' method was converted from the original C++ copy assignment operator:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 135
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 151
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 167
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\Account.cs
+Line Number: 183
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 89
+Comment: //C++ TO C# CONVERTER NOTE: This 'CopyFrom' method was converted from the original C++ copy assignment operator:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 104
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 120
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 122
+Comment: //C++ TO C# CONVERTER WARNING: C# has no equivalent to methods returning pointers to value types:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 137
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 221
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 392
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 420
+Comment: //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
+--------------------------------------------------------------------------------------
+File: C:\Users\root\code\git\convert_cpp-cshrp\bankapplication-cshrp\BankManager.cs
+Line Number: 506
+Comment: //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent for pointers to value types:
+--------------------------------------------------------------------------------------
