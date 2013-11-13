@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace bankapp
 {
@@ -37,155 +38,20 @@ namespace bankapp
         /// \throw  
         ///////////////////////////////////////////////////////////////////////
 
-        public BankManager()
+        public BankManager(int maxNumberAccounts = 1024)
         {
-            mAccountsPtr = Arrays.InitializeWithDefaultInstances<Account>(1024);
-            mAccountsAvailablePtr = new bool[1024];
-
-            for (int counter = 0; counter < 1024; counter++)
-            {
-                mAccountsAvailablePtr[counter] = true;
-            }
-
-            mNumberAccounts = 1024;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// BankManager ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public BankManager(int maxNumberAccounts)
-        {
-            mAccountsPtr = Arrays.InitializeWithDefaultInstances<Account>(maxNumberAccounts);
-            mAccountsAvailablePtr = new bool[maxNumberAccounts];
+            Accounts = new Account[1024];
+            AccountsAvailable = new bool[maxNumberAccounts];
 
             for (int counter = 0; counter < maxNumberAccounts; counter++)
             {
-                mAccountsAvailablePtr[counter] = true;
+                Accounts[counter] = new Account();
+                AccountsAvailable[counter] = true;
             }
 
-            mNumberAccounts = maxNumberAccounts;
+            NumberAccounts = maxNumberAccounts;
         }
 
-        ///////////////////////////////////////////////////////////////////////
-        /// ~BankManager ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void Dispose()
-        {
-            mAccountsPtr = null;
-            mAccountsAvailablePtr = null;
-        }
-
-        // overloaded assignment operator
-        //C++ TO C# CONVERTER NOTE: This 'CopyFrom' method was converted from the original C++ copy assignment operator:
-        //ORIGINAL LINE: BankManager & operator = (const BankManager &rhs);
-        //		BankManager CopyFrom (BankManager rhs);
-
-        // getters / accessors
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getAccountPtr ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: Account * getAccountsPtr() const
-        public Account getAccountsPtr()
-        {
-            return mAccountsPtr;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getAccountsAvailablePtr ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: bool * getAccountsAvailablePtr() const
-        //C++ TO C# CONVERTER WARNING: C# has no equivalent to methods returning pointers to value types:
-        public bool getAccountsAvailablePtr()
-        {
-            return mAccountsAvailablePtr;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getNumberAccounts ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: int getNumberAccounts() const
-        public int getNumberAccounts()
-        {
-            return mNumberAccounts;
-        }
-
-        // setters / mutators
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setAccountsPtr ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setAccountsPtr(Account newAccountsPtr)
-        {
-            mAccountsPtr = newAccountsPtr;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setAccountsAvailablePtr ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setAccountsAvailablePtr(ref bool newAccountsAvailablePtr)
-        {
-            mAccountsAvailablePtr = newAccountsAvailablePtr;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setNumberAccounts ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setNumberAccounts(int newNumberAccounts)
-        {
-            mNumberAccounts = newNumberAccounts;
-        }
 
 
         ///////////////////////////////////////////////////////////////////////
@@ -226,9 +92,10 @@ namespace bankapp
         {
             int option = 0;
 
-            cin >> option;
+            string line = Console.ReadLine();
+            int.TryParse(line, out option);
 
-            system("cls");
+            Console.Clear();
 
             return option;
         }
@@ -252,28 +119,33 @@ namespace bankapp
             bool success = true;
 
             Console.Write("Enter account number: ");
-            cin >> accountNumber;
+            string line = Console.ReadLine();
+            if (!int.TryParse(line, out accountNumber))
+            {
+                return false;
+            }
 
             Console.Write("Enter name: ");
-            cin.clear();
-            cin.sync();
-            cStringName = Console.ReadLine();
-            name = ((char)cStringName).ToString();
+            name = Console.ReadLine();
 
             Console.Write("Enter balance: ");
-            cin >> balance;
+            line = Console.ReadLine();
+            if (!double.TryParse(line, out balance))
+            {
+                return false;
+            }
 
             Console.Write("Enter date: ");
-            cin >> dateCreated;
+            dateCreated = Console.ReadLine();
 
             int counter = 0;
-            while ((mAccountsAvailablePtr[counter] != true) && (counter < mNumberAccounts))
+            while ((AccountsAvailable[counter] != true) && (counter < NumberAccounts))
             {
                 // search for avialable account space in the array
                 counter++;
             }
 
-            if (mNumberAccounts <= counter)
+            if (NumberAccounts <= counter)
             {
                 Console.Write("WARNING: Could not create account!");
                 Console.Write("\n");
@@ -281,12 +153,12 @@ namespace bankapp
             }
             else
             {
-                mAccountsPtr[counter].setAccountNumber(accountNumber);
-                mAccountsPtr[counter].setName(name);
-                mAccountsPtr[counter].setBalance(balance);
-                mAccountsPtr[counter].setDateCreated(dateCreated);
+                Accounts[counter].AccountNumber = accountNumber;
+                Accounts[counter].Name = name;
+                Accounts[counter].Balance = balance;
+                Accounts[counter].DateCreated = dateCreated;
 
-                mAccountsAvailablePtr[counter] = false;
+                AccountsAvailable[counter] = false;
             }
 
             return success;
@@ -305,14 +177,13 @@ namespace bankapp
         {
             bool success = false;
             int accountNumber = 0;
-            int counter = 0;
 
-            counter = findAccount();
+            accountNumber = findAccount();
 
-            if ((counter < mNumberAccounts) && (mAccountsAvailablePtr[counter] == false)) // we found the account, so delete it
+            if ((accountNumber < NumberAccounts) && (AccountsAvailable[accountNumber] == false)) // we found the account, so delete it
             {
                 success = true;
-                mAccountsAvailablePtr[counter] = true;
+                AccountsAvailable[accountNumber] = true;
                 Console.Write("Account deleted!");
                 Console.Write("\n");
             }
@@ -333,16 +204,14 @@ namespace bankapp
         {
             bool success = false;
             string name = "";
-            string dateCreated = "";
             double balance = 0.0;
             double deposit = 0.0;
             int accountNumber = 0;
-            int counter = 0;
             int option = 0;
 
-            counter = findAccount();
+            accountNumber = findAccount();
 
-            if ((counter < mNumberAccounts) && (mAccountsAvailablePtr[counter] == false)) // we found the account, so delete it
+            if ((accountNumber < NumberAccounts) && (AccountsAvailable[accountNumber] == false)) // we found the account, so delete it
             {
                 success = true;
 
@@ -353,24 +222,36 @@ namespace bankapp
                 Console.Write("3. Deposit Money");
                 Console.Write("\n");
 
-                cin >> option;
+                string line = Console.ReadLine();
+                if (!int.TryParse(line, out option))
+                {
+                    return false;
+                }
 
                 switch (option)
                 {
                     case 1:
                         Console.Write("Enter name: ");
-                        cin >> name;
-                        mAccountsPtr[counter].setName(name);
+                        name = Console.ReadLine();                        
+                        Accounts[accountNumber].Name = name;
                         break;
                     case 2:
                         Console.Write("Enter amount to withdraw: ");
-                        cin >> balance;
-                        mAccountsPtr[counter].debit(balance);
+                        line = Console.ReadLine();
+                        if (!double.TryParse(line, out balance))
+                        {
+                            break;
+                        }
+                        Accounts[accountNumber].debit(balance);
                         break;
                     case 3:
                         Console.Write("Enter amount to deposit: ");
-                        cin >> deposit;
-                        mAccountsPtr[counter].credit(deposit);
+                        line = Console.ReadLine();
+                        if (!double.TryParse(line, out deposit))
+                        {
+                            break;
+                        }
+                        Accounts[accountNumber].credit(deposit);
                         break;
                     default:
                         Console.Write("ERROR: Invalid option!");
@@ -399,9 +280,9 @@ namespace bankapp
 
             counter = findAccount();
 
-            if ((counter < mNumberAccounts) && (mAccountsAvailablePtr[counter] == false)) // we found the account, so delete it
+            if ((counter < NumberAccounts) && (AccountsAvailable[counter] == false)) // we found the account, so delete it
             {
-                mAccountsPtr[counter].printBalance();
+                Accounts[counter].printBalance();
             }
             else
             {
@@ -426,10 +307,11 @@ namespace bankapp
             int accountNumber = 0;
 
             Console.Write("Enter account number: ");
-            cin >> accountNumber;
+            string line = Console.ReadLine();
+            int.TryParse(line, out accountNumber);
 
             int counter = 0;
-            for (counter = 0; ((counter < mNumberAccounts) && (mAccountsPtr[counter].getAccountNumber() != accountNumber)); counter++)
+            for (counter = 0; ((counter < NumberAccounts) && (Accounts[counter].AccountNumber != accountNumber)); counter++)
             {
                 // The header of the for () takes care of all logic
             }
@@ -459,6 +341,7 @@ namespace bankapp
 
             do
             {
+                Console.Clear();
                 displayMenu();
                 option = getMenuOption();
 
@@ -504,10 +387,8 @@ namespace bankapp
             } while (status != false);
         }
 
-        private Account mAccountsPtr;
-        //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent for pointers to value types:
-        //ORIGINAL LINE: bool *mAccountsAvailablePtr;
-        private bool mAccountsAvailablePtr;
-        private int mNumberAccounts;
+        public Account[] Accounts { get; set; }
+        public bool[] AccountsAvailable { get; set; }
+        public int NumberAccounts { get; set; }
     }
 }

@@ -14,18 +14,6 @@ namespace bankapp
     /// \date  
     ///            
     ///////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \file         Account.h
-    /// \author       Andrew S. O'Fallon
-    /// \date         
-    /// \brief        This application performs basic banking operations.
-    ///           
-    ///       
-    /// REVISION HISTORY:
-    /// \date  
-    ///            
-    ///////////////////////////////////////////////////////////////////////////////
-
     public class Account
     {
 
@@ -42,16 +30,16 @@ namespace bankapp
         {
             if (initialBalance < 0.0)
             {
-                mBalance = 0.0;
+                Balance = 0.0;
             }
             else
             {
-                mBalance = initialBalance;
+                Balance = initialBalance;
             }
 
-            mAccountNumber = newAccountNumber;
-            mName = newName;
-            mDateCreated = newDateCreated;
+            AccountNumber = newAccountNumber;
+            Name = newName;
+            DateCreated = newDateCreated;
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -65,27 +53,11 @@ namespace bankapp
 
         public Account(Account copyAccount)
         {
-            mBalance = copyAccount.getBalance();
-            mAccountNumber = copyAccount.getAccountNumber();
-            mName = copyAccount.getName();
-            mDateCreated = copyAccount.getName();
+            Balance = copyAccount.Balance;
+            AccountNumber = copyAccount.AccountNumber;
+            Name = copyAccount.Name;
+            DateCreated = copyAccount.DateCreated;
         }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// ~Account ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void Dispose()
-        {
-            // Accounts are not created using dynamic memory.
-            // This method does nothing.
-        }
-
 
         ///////////////////////////////////////////////////////////////////////
         /// Assignment operator
@@ -102,137 +74,14 @@ namespace bankapp
         {
             if (this != rhs)
             {
-                mBalance = rhs.getBalance();
-                mAccountNumber = rhs.getAccountNumber();
-                mName = rhs.getName();
-                mDateCreated = rhs.getName();
+                Balance = rhs.Balance;
+                AccountNumber = rhs.AccountNumber;
+                Name = rhs.Name;
+                DateCreated = rhs.DateCreated;
             }
 
             return this;
         }
-
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getBalance ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: double getBalance() const
-        public double getBalance()
-        {
-            return mBalance;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getAccountNumber ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: int getAccountNumber() const
-        public int getAccountNumber()
-        {
-            return mAccountNumber;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getName ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: string getName() const
-        public string getName()
-        {
-            return mName;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// getDateCreated ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
-        //ORIGINAL LINE: string getDateCreated() const
-        public string getDateCreated()
-        {
-            return mDateCreated;
-        }
-
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setBalance ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setBalance(double newBalance)
-        {
-            mBalance = newBalance;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setAccountNumber ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setAccountNumber(int newAccountNumber)
-        {
-            mAccountNumber = newAccountNumber;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setName ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setName(string newName)
-        {
-            mName = newName;
-        }
-
-        ///////////////////////////////////////////////////////////////////////
-        /// setDateCreated ()
-        /// \pre    
-        /// \post   
-        /// \param  (repeat for every parameter)
-        /// \return
-        /// \throw  
-        ///////////////////////////////////////////////////////////////////////
-
-        public void setDateCreated(string newDateCreated)
-        {
-            mDateCreated = newDateCreated;
-        }
-
 
         ///////////////////////////////////////////////////////////////////////
         /// credit ()
@@ -245,8 +94,8 @@ namespace bankapp
 
         public double credit(double newAmount)
         {
-            mBalance += newAmount;
-            return mBalance;
+            Balance += newAmount;
+            return Balance;
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -260,7 +109,7 @@ namespace bankapp
 
         public double debit(double newAmount)
         {
-            if (newAmount > mBalance)
+            if (newAmount > Balance)
             {
                 Console.Write("WARNING: Can't withdraw ");
                 Console.Write(newAmount);
@@ -269,10 +118,10 @@ namespace bankapp
             }
             else
             {
-                mBalance -= newAmount;
+                Balance -= newAmount;
             }
 
-            return mBalance;
+            return Balance;
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -287,22 +136,22 @@ namespace bankapp
         public void printBalance()
         {
             Console.Write("A#: ");
-            Console.Write(mAccountNumber);
+            Console.Write(AccountNumber);
             Console.Write("\n");
             Console.Write("Name: ");
-            Console.Write(mName);
+            Console.Write(Name);
             Console.Write("\n");
             Console.Write("Current Balance: ");
-            Console.Write(mBalance);
+            Console.Write(Balance);
             Console.Write("\n");
             Console.Write("Date Created: ");
-            Console.Write(mDateCreated);
+            Console.Write(DateCreated);
             Console.Write("\n");
         }
 
-        private double mBalance;
-        private int mAccountNumber;
-        private string mName;
-        private string mDateCreated;
+        public double Balance { get; set; }
+        public int AccountNumber { get; set; }
+        public string Name { get; set; }
+        public string DateCreated { get; set; }
     }
 }
