@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,5 +79,26 @@ namespace bankapp
             Assert.DoesNotThrow(() => account.printBalance());
         }
 
+    }
+
+    public class BankManagerTest
+    {
+        [Fact]
+        public void BM_createAccount()
+        {
+            BankManager bm = new BankManager(8);
+            string testAccount = @"0001
+                                   Test Patron
+                                   9001.00
+                                   01/02/2003";
+            StringReader input  = new StringReader(testAccount);
+            StringWriter output = new StringWriter();
+
+            Console.SetIn(input);
+            Console.SetOut(output);
+
+            Assert.True(bm.createAccount());
+
+        }
     }
 }
