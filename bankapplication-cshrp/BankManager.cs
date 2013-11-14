@@ -173,7 +173,6 @@ namespace bankapp
         /// \return
         /// \throw  
         ///////////////////////////////////////////////////////////////////////
-
         public bool deleteAccount()
         {
             bool success = false;
