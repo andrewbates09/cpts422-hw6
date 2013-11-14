@@ -18,6 +18,10 @@ namespace bankapp
             Assert.True(account.AccountNumber == 1);
             Assert.True(account.Name == "TestAcct");
             Assert.True(account.DateCreated == "1/1/11");
+
+            account = new Account(-5, 1, "TestAcct", "1/1/11");
+            Assert.True(account.Balance == 0.0);
+
         }
 
         [Fact]
@@ -61,6 +65,17 @@ namespace bankapp
             account.debit(24.75);
 
             Assert.True(account.Balance == 25.25);
+
+            account.debit(500);
+
+            Assert.True(account.Balance == 25.25);
+        }
+
+        [Fact]
+        public void printBalance()
+        {
+            Account account = new Account(50.0, 1, "TestAcct", "1/1/11");
+            Assert.DoesNotThrow(() => account.printBalance());
         }
 
     }
