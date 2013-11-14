@@ -33,12 +33,35 @@ namespace bankapp
         }
 
         [Fact]
-        public void copyAccount()
+        public void copyFromAccount()
         {
             Account account = new Account(50.0, 1, "TestAcct", "1/1/11");
-            Account account2 = new Account(account);
+            Account account2 = new Account();
+            account2.CopyFrom(account);
+
+            Assert.True(account.Balance == account2.Balance);
+            Assert.True(account.AccountNumber == account2.AccountNumber);
+            Assert.True(account.Name == account2.Name);
+            Assert.True(account.DateCreated == account2.DateCreated);
         }
 
+        [Fact]
+        public void creditAccount()
+        {
+            Account account = new Account(50.0, 1, "TestAcct", "1/1/11");
+            account.credit(25.75);
+
+            Assert.True(account.Balance == 75.75);
+        }
+
+        [Fact]
+        public void debitAccount()
+        {
+            Account account = new Account(50.0, 1, "TestAcct", "1/1/11");
+            account.debit(24.75);
+
+            Assert.True(account.Balance == 25.25);
+        }
 
     }
 }
